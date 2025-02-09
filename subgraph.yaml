@@ -1,0 +1,76 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: EzeFinanceServiceManager
+    network: base-sepolia
+    source:
+      address: "0xa7e15384f0de1e1ab0f8bdd580ba9497076fbab9"
+      abi: EzeFinanceServiceManager
+      startBlock: 21665799
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Debug
+        - EzeTaskResponded
+        - Initialized
+        - NewEzeTaskCreated
+        - OwnershipTransferred
+        - RewardsInitiatorUpdated
+      abis:
+        - name: EzeFinanceServiceManager
+          file: ./abis/EzeFinanceServiceManager.json
+      eventHandlers:
+        - event: Debug(bytes32,bytes32)
+          handler: handleDebug
+        - event: EzeTaskResponded(indexed uint32,(address,string,uint32),address,bytes)
+          handler: handleEzeTaskResponded
+        - event: Initialized(uint8)
+          handler: handleInitialized
+        - event: NewEzeTaskCreated(indexed uint32,(address,string,uint32))
+          handler: handleNewEzeTaskCreated
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: RewardsInitiatorUpdated(address,address)
+          handler: handleRewardsInitiatorUpdated
+      file: ./src/eze-finance-service-manager.ts
+  - kind: ethereum
+    name: TransparentUpgradeableProxy
+    network: base-sepolia
+    source:
+      address: "0x29a8b84566ebaf9348699eaade9a942eaaf6068d"
+      abi: EzeFinanceServiceManager
+      startBlock: 21665799
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Debug
+        - EzeTaskResponded
+        - Initialized
+        - NewEzeTaskCreated
+        - OwnershipTransferred
+        - RewardsInitiatorUpdated
+      abis:
+        - name: EzeFinanceServiceManager
+          file: ./abis/EzeFinanceServiceManager.json
+      eventHandlers:
+        - event: Debug(bytes32,bytes32)
+          handler: handleDebug
+        - event: EzeTaskResponded(indexed uint32,(address,string,uint32),address,bytes)
+          handler: handleEzeTaskResponded
+        - event: Initialized(uint8)
+          handler: handleInitialized
+        - event: NewEzeTaskCreated(indexed uint32,(address,string,uint32))
+          handler: handleNewEzeTaskCreated
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: RewardsInitiatorUpdated(address,address)
+          handler: handleRewardsInitiatorUpdated
+      file: ./src/transparent-upgradeable-proxy.ts

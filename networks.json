@@ -1,0 +1,11 @@
+{
+  "base-sepolia": {
+    "EzeFinanceServiceManager": {
+      "address": "0xa7e15384f0de1e1ab0f8bdd580ba9497076fbab9",
+      "startBlock": 21665799
+    },
+    "TransparentUpgradeableProxy": {
+      "address": "0x29a8b84566ebaf9348699eaade9a942eaaf6068d"
+    }
+  }
+}
